@@ -24,6 +24,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import org.junit.Ignore;
+import org.junit.experimental.categories.Category;
+
 import com.gemstone.gemfire.cache.AttributesFactory;
 import com.gemstone.gemfire.cache.Cache;
 import com.gemstone.gemfire.cache.CacheException;
@@ -39,6 +42,7 @@ import com.gemstone.gemfire.cache.server.CacheServer;
 import com.gemstone.gemfire.cache30.CacheSerializableRunnable;
 import com.gemstone.gemfire.cache30.CacheTestCase;
 import com.gemstone.gemfire.internal.AvailablePort;
+import com.gemstone.gemfire.test.junit.categories.DistributedTest;
 
 import dunit.Host;
 import dunit.VM;
@@ -47,14 +51,16 @@ import dunit.VM;
  * @author shobhit
  *
  */
-public class PutAllWithIndexPerfDUnitDisabledTest extends CacheTestCase {
+@Category(DistributedTest.class)
+@Ignore("Test was disabled by renaming to DisabledTest")
+public class PutAllWithIndexPerfDUnitTest extends CacheTestCase {
 
   /** The port on which the bridge server was started in this VM */
   private static int bridgeServerPort;
   static long timeWithoutStructTypeIndex = 0;
   static long timeWithStructTypeIndex = 0;
   
-  public PutAllWithIndexPerfDUnitDisabledTest(String name) {
+  public PutAllWithIndexPerfDUnitTest(String name) {
     super(name);
   }
 
@@ -103,7 +109,7 @@ public class PutAllWithIndexPerfDUnitDisabledTest extends CacheTestCase {
       });
 
     // Create client region
-    final int port = vm0.invokeInt(PutAllWithIndexPerfDUnitDisabledTest.class, "getCacheServerPort");
+    final int port = vm0.invokeInt(PutAllWithIndexPerfDUnitTest.class, "getCacheServerPort");
     final String host0 = getServerHostName(vm0.getHost());
     vm1.invoke(new CacheSerializableRunnable("Create region") {
         public void run2() throws CacheException {
